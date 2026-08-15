@@ -18,3 +18,4 @@ export async function POST(req:Request){
   await db.insert(usageSessions).values({sessionId,userId:user.userId,email:user.email,displayName:user.displayName,loginAt:now,lastSeenAt:now,activeSeconds}).onConflictDoUpdate({target:usageSessions.sessionId,set:{email:user.email,displayName:user.displayName,lastSeenAt:now,activeSeconds:sql`max(${usageSessions.activeSeconds}, ${activeSeconds})`}});
   return Response.json({ok:true});
 }
+

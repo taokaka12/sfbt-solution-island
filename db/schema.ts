@@ -11,3 +11,4 @@ export const usageSessions=sqliteTable("usage_sessions",{
   lastSeenAt:text("last_seen_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   activeSeconds:integer("active_seconds").notNull().default(0),
 },table=>[index("idx_usage_user").on(table.userId),index("idx_usage_login").on(table.loginAt)]);
+

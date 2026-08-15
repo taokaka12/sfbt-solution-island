@@ -110,3 +110,4 @@ window.SFBT_CHAPTERS_41_50 = [
 ['What did good enough do in the MS case?',['Made 6 meaningful while retaining 10','Changed 2 to 10','Removed hope','Set prognosis'],0],
 ['How often must it be asked?',['No single rule; use varies','Every first session','Only after zero','Never with illness'],0]],audit:'PASS — grounding, plus one, threshold, MS example and optional use checked against book p. 127.'}
 ];
+

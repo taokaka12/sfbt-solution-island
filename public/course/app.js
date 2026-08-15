@@ -29,7 +29,7 @@ instantAnswer=function(index){if(stage<6||checked)return;const [,answers,ok]=les
 
 // Hosted edition: use the signed-in cloud account and persist progress remotely.
 save=function(){if(currentUser)localStorage.setItem(key,JSON.stringify(state));fetch('/api/progress',{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify(state)}).catch(()=>{});renderStats()};
-async function startHosted(){try{const response=await fetch('/api/progress');if(!response.ok){location.href='/';return}const payload=await response.json();currentUser=payload.user.email;key=`sfbtQuestProgressV4:${currentUser}`;state=payload.state||emptyState();sessionStorage.setItem('sfbtCurrentUser',currentUser);$('#authView').classList.add('hidden');$('#appShell').classList.remove('hidden');renderMap()}catch{location.href='/'}}
+async function startHosted(){try{const response=await fetch('/api/progress');if(!response.ok){location.href='/sfbt';return}const payload=await response.json();currentUser=payload.user.email;key=`sfbtQuestProgressV4:${currentUser}`;state=payload.state||emptyState();sessionStorage.setItem('sfbtCurrentUser',currentUser);$('#authView').classList.add('hidden');$('#appShell').classList.remove('hidden');renderMap()}catch{location.href='/sfbt'}}
 let usageTimer=null,usageSeconds=0;
 function usageSessionId(){let id=sessionStorage.getItem('sfbtUsageSessionV1');if(!id){id=crypto.randomUUID();sessionStorage.setItem('sfbtUsageSessionV1',id)}return id}
 function reportUsage(){fetch('/api/session',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({sessionId:usageSessionId(),activeSeconds:usageSeconds}),keepalive:true}).catch(()=>{})}

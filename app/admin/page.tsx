@@ -26,3 +26,4 @@ export default async function Admin(){
     <footer>Prof.Tao, Huzhou Normal University</footer>
   </main>;
 }
+

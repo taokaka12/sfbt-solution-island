@@ -2,22 +2,44 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request("http://localhost/", { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+  return worker.fetch(new Request(`http://localhost${path}`, { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-test("server-renders the finished Solution Island landing page", async () => {
+test("server-renders the learning hub with both module entrances", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
-  assert.match(html, /<title>Solution Island · SFBT 100 Key Points<\/title>/i);
+  assert.match(html, /<title>陶教授学习训练中心<\/title>/i);
+  assert.match(html, /财富大脑训练营/);
+  assert.match(html, /Solution Island · SFBT/);
+  assert.match(html, /href="\/wealth-brain\//);
+  assert.match(html, /href="\/sfbt"/);
+  assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
+});
+
+test("server-renders the preserved SFBT landing page at its new route", async () => {
+  const response = await render("/sfbt");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Solution Island · SFBT 100 Key Points \| 陶教授学习训练中心<\/title>/i);
   assert.match(html, /100 key points through six-part explanations/i);
   assert.match(html, /Prof\.Tao, Huzhou Normal University/);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape/i);
+  assert.match(html, /href="\/"/);
+});
+
+test("wealth brain module is a complete standalone page", async () => {
+  const html = await readFile(
+    new URL("../public/wealth-brain/index.html", import.meta.url),
+    "utf8",
+  );
+  assert.match(html, /<title>财富大脑训练营<\/title>/);
+  assert.match(html, /APP_CONFIG/);
+  assert.match(html, /返回学习训练中心/);
 });
 
 test("course includes instant retry, ten-point walker, and celebration feedback", async () => {

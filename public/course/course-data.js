@@ -104,3 +104,4 @@ const rows=[
 [100,16,'Self-help SFBT','People can use preferred futures, exceptions, scales, and small-step questions themselves.','Treat yourself as resourceful and keep noticing what works.']
 ];
 window.SFBT_COURSE={units:unitDefs,lessons:rows};
+

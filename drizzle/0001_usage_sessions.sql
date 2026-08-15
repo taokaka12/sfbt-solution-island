@@ -11,3 +11,4 @@ CREATE TABLE IF NOT EXISTS `usage_sessions` (
 CREATE INDEX IF NOT EXISTS `idx_usage_user` ON `usage_sessions` (`user_id`);
 --> statement-breakpoint
 CREATE INDEX IF NOT EXISTS `idx_usage_login` ON `usage_sessions` (`login_at`);
+

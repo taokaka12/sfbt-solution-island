@@ -442,3 +442,4 @@ window.SFBT_CHAPTERS = [
 ['What additional feature makes a description interactional?',['It traces reciprocal responses and their effects','It names an individual feeling','It states a time and place only','It predicts exact compliance'],0],
 ['Are the morning behaviours prescribed tasks?',['No, they create a realistic sense of possibility','Yes, mother and daughter must enact them exactly','Only the smile is mandatory','They are assessment criteria'],0]],audit:'PASS — multi-perspectival evidence, passer-by example, reciprocal morning sequence and non-prescriptive purpose checked against book pp. 98–99.'}
 ];
+
