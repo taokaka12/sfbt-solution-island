@@ -21,11 +21,15 @@
 .module-card:focus-visible{outline:4px solid #2879e5;outline-offset:5px}
 .module-card.wealth{background:linear-gradient(145deg,#fff7df 0 68%,#ffc35c 68%)}
 .module-card.sfbt{background:linear-gradient(145deg,#e8f5ee 0 68%,#dbea73 68%)}
+.module-card.game-theory{background:linear-gradient(145deg,#edf1f7 0 68%,#91a6c8 68%)}
+.module-card.tiny-habits{background:linear-gradient(145deg,#fff0ea 0 68%,#f0a67f 68%)}
 .module-card-top{display:flex;align-items:center;justify-content:space-between}
 .module-number{font:700 18px/1 Georgia,serif;letter-spacing:.12em}
 .module-icon{display:grid;place-items:center;width:68px;height:68px;border:2px solid #17342b;border-radius:22px 22px 22px 7px;background:#fffdf7;font-size:34px;box-shadow:0 5px 0 #17342b}
 .module-eyebrow{margin:44px 0 12px;font-size:11px;font-weight:900;letter-spacing:.16em;color:#197259}
 .wealth .module-eyebrow{color:#b76700}
+.game-theory .module-eyebrow{color:#365b8d}
+.tiny-habits .module-eyebrow{color:#a64b2a}
 .module-card h2{margin:0;font:700 clamp(30px,4vw,47px)/1.12 Georgia,"Noto Serif SC",serif;letter-spacing:-.025em}
 .module-description{max-width:480px;min-height:76px;margin:18px 0 20px;color:#455b54;font-size:16px;line-height:1.7}
 .module-card ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}

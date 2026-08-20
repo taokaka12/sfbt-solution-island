@@ -23,6 +23,12 @@ test("builds a repository-subpath-safe GitHub Pages edition", async () => {
     access(new URL("wealth-brain/index.html", output)),
     access(new URL("course/index.html", output)),
     access(new URL("course/images/Q1.webp", output)),
+    access(new URL("game-theory/index.html", output)),
+    access(new URL("game-theory/js/app.js", output)),
+    access(new URL("game-theory/css/style.css", output)),
+    access(new URL("tiny-habits/index.html", output)),
+    access(new URL("tiny-habits/js/app.js", output)),
+    access(new URL("tiny-habits/css/style.css", output)),
   ]);
 
   const [home, sfbt, wealth, courseApp] = await Promise.all([
@@ -34,6 +40,8 @@ test("builds a repository-subpath-safe GitHub Pages edition", async () => {
 
   assert.match(home, /href="\.\/wealth-brain\/"/);
   assert.match(home, /href="\.\/sfbt\/"/);
+  assert.match(home, /href="\.\/game-theory\/"/);
+  assert.match(home, /href="\.\/tiny-habits\/"/);
   assert.match(sfbt, /href="\.\.\/course\/"/);
   assert.match(sfbt, /href="\.\.\/"/);
   assert.match(wealth, /href="\.\.\/"[^>]*aria-label="返回学习训练中心"/);
